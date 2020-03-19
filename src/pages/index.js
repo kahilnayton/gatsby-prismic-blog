@@ -1,40 +1,54 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
-// import { linkResolver } from "gatsby-source-prismic-graphql"
-import { linkResolver } from '../utils/linkResolver';
-import Layout from "../components/layout"
-import { RichText } from "prismic-reactjs"
+import { graphql } from "gatsby"
+import SliceZone from '../components/sliceZone';
+import Layout from "../components/Layout"
 
 export const query = graphql`
-  {
-    prismic {
-      allPosts {
-        edges {
-          node {
-            _meta {
-              uid
+{
+  prismic {
+    allHomepages {
+      edges {
+        node {
+          body {
+            ... on PRISMIC_HomepageBodyHero {
+              type
+              primary {
+                hero_content
+                hero_title
+                background_image
+              }
             }
-            body
-            header
-            _linkType
-          }
-        }
-      }
-      allBlogpages {
-        edges {
-          node {
-            _meta {
-              uid
-            }
-            post {
-              post1 {
-                ... on PRISMIC_Post {
-                  header
-                  body
-                  _meta {
-                    uid
+            ... on PRISMIC_HomepageBodyCall_to_action_grid {
+              type
+              label
+              primary {
+                section_title
+              }
+              fields {
+                button_label
+                call_to_action_title
+                button_destination {
+                  ... on PRISMIC_Page {
+                    _meta {
+                      uid
+                    }
                   }
                 }
+                content
+                featured_image
+              }
+            }
+            ... on PRISMIC_HomepageBodyPrice_list {
+              type
+              label
+              fields {
+                price_list_description
+                price_list_title
+                price_per_month
+                price_type
+              }
+              primary {
+                title
               }
             }
           }
@@ -42,31 +56,15 @@ export const query = graphql`
       }
     }
   }
+}
 `
 
-const BlogPosts = ({ posts }) => {
-  if (!posts) return null
-  return (
-    <div>
-      <p>{RichText.asText(posts[0].node.body)}</p>
-      <Link to={linkResolver(posts[0].node._meta)}>hello</Link>
-    </div>
-  )
-}
-
-export default ({ data }) => {
-  const doc = data.prismic.allBlogpages.edges.slice(0, 1).pop()
-  const posts = data.prismic.allPosts.edges
-
-  if (!doc) return null
-
-  return (
-    <Layout>
-      <div>
-        <h1>{RichText.asText(doc.node.post[0].post1.header)}</h1>
-        <p>{RichText.asText(doc.node.post[0].post1.body)}</p>
-      </div>
-      <BlogPosts posts={posts} />
-    </Layout>
-  )
-}
+const IndexPage = (props) => {
+  console.log(props);
+  return(
+  <Layout>
+    <SliceZone body={props.data.prismic.allHomepages.edges[0].node.body} />
+  </Layout>
+)
+  }
+export default IndexPage
