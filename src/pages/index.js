@@ -60,7 +60,6 @@ export const query = graphql`
 `
 
 const IndexPage = (props) => {
-  console.log(props);
   return(
   <Layout>
     <SliceZone body={props.data.prismic.allHomepages.edges[0].node.body} />

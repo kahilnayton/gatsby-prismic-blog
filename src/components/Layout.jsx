@@ -92,7 +92,6 @@ const Layout = ({ children }) => {
           query={`${navigationQuery}`}
           // When it resolves this navigation query it's going to inject the result into this render function
           render={data => {
-            console.log(data);
             return (
               <>
                 <Branding>

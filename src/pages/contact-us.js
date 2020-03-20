@@ -88,9 +88,9 @@ const ContactUs = props => {
                 return (
                   <div key={i}>
                     <textarea
-                      name={field.field_name}
+                      name={field.name}
                       required={field.required === 'Yes'}
-                      placeholder={field.field_name}
+                      placeholder={field.name}
                     />
                   </div>
                 );
@@ -98,8 +98,8 @@ const ContactUs = props => {
                 return (
                   <div key={i}>
                     <input
-                      name={field.field_name}
-                      placeholder={field.field_name}
+                      name={field.name}
+                      placeholder={field.name}
                       required={field.required === 'Yes'}
                       type={field.field_type}
                     />
