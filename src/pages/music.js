@@ -4,8 +4,8 @@ import { Link, graphql } from "gatsby"
 import { linkResolver } from '../utils/linkResolver'
 import htmlSerializer from '../utils/htmlSerializer';
 
-import Layout from "../components/layout"
-import RichText from "../components/richText";
+import Layout from "../components/Layout"
+import RichText from "../components/RichText";
 
 export const query = graphql`
   {

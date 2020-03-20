@@ -4,7 +4,6 @@ import CallToActionGrid from './CallToActionGrid';
 import PriceList from './PriceList'
 
 const SliceZone = ({ body }) => {
-  console.log(body);
   return (
     <div>
       {body.map((bodyContent, i) => {
