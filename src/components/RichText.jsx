@@ -4,7 +4,7 @@ import { Link } from 'gatsby';
 import {linkResolver} from '../utils/linkResolver';
 
 const htmlSerializer = (type, element, content, children, index) => {
-    // Generate links to Prismic Documents as <Link> components
+
     if (type === 'hyperlink') {
         let result = ''
         const url = PrismicLink.url(element.data, linkResolver)
@@ -17,7 +17,7 @@ const htmlSerializer = (type, element, content, children, index) => {
         return result
     }
 
-    // If the image is also a link to a Prismic Document, it will return a <Link> component
+
     if (type === 'image') {
         let result = <img src={ element.url } alt={ element.alt || '' } copyright={ element.copyright || '' } />
 
@@ -36,7 +36,6 @@ const htmlSerializer = (type, element, content, children, index) => {
     return result;
 }
 
-  // Return null to stick with the default behavior for everything else
   return null;
 };
 

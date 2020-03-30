@@ -1,6 +1,6 @@
 import React from 'react';
 import RichText from './RichText';
-import styled from 'styled-components';
+import styled from "@emotion/styled";
 
 const PriceItemWrapper = styled.div`
   flex-grow: 1;

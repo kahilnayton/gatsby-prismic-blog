@@ -3,7 +3,7 @@ import { graphql, Link } from 'gatsby';
 import RichText from '../components/RichText';
 import Layout from '../components/Layout';
 import SliceZone from '../components/SliceZone';
-import styled from 'styled-components';
+import styled from "@emotion/styled";
 
 export const query = graphql`
   query PageQuery($id: String) {

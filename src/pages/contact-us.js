@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
-import styled from 'styled-components';
+import styled from "@emotion/styled";
 import RichText from '../components/RichText';
 
 export const query = graphql`

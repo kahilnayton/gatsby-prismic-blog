@@ -1,5 +1,3 @@
-// -- The HTML Serializer
-// This function will be used to modify the way that a Rich Text or Title field is rendered.
 
 import React from 'react'
 import { Link as PrismicLink } from 'prismic-reactjs'
@@ -8,7 +6,6 @@ import { linkResolver } from './linkResolver'
 import { Link } from "gatsby"
 
 export default function (type, element, content, children, index) {
-  // Generate links to Prismic Documents as <Link> components
   if (type === Elements.hyperlink) {
     let result = ''
     const url = PrismicLink.url(element.data, linkResolver)
@@ -22,7 +19,6 @@ export default function (type, element, content, children, index) {
     return result
   }
 
-  // If the image is also a link to a Prismic Document, it will return a <Link> component
   if (type === Elements.image) {
     let result = <img src={ element.url } alt={ element.alt || '' } copyright={ element.copyright || '' } />
 
@@ -41,6 +37,5 @@ export default function (type, element, content, children, index) {
     return result
   }
 
-  // Return null to stick with the default behavior for everything else
   return null;
 };

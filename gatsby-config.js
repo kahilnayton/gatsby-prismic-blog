@@ -1,25 +1,20 @@
 const siteMetadata = {
-  title: `gatsby-prismic-blog`,
-  description: `New portfolio blog`,
-  image: `src/images/kahil.JPG`,
-  siteUrl: `http://www.kahilnayton.com/`,
+  title: `Ronik starter theme`,
+  description: `Ronik theme`,
+  image: `src/images/ronik.jpg`,
+  siteUrl: `http://www.ronikdesign.com/`,
   siteLanguage: `en-US`,
   siteLocale: `en_us`,
-  authorName: `kahil nayton`,
-  author: `kahil nayton | https://www.kahilnayton.com`,
-  twitterUsername: `@kbird`,
-}
+  authorName: `Ronik`,
+  author: `Ronik | https://www.ronikdesign.com`,
+  twitterUsername: `ronikdesign`,
+};
 
 module.exports = {
   siteMetadata,
-  siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-  },
   plugins: [
-    `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -38,15 +33,15 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/ronik.jpg`, 
       },
     },
     {
       resolve: `gatsby-source-prismic-graphql`,
       options: {
-        repositoryName: 'kahil-portfolio',
-        path: '/preview',
-        previews: true,
+        repositoryName: 'prismic-repo',
+        // path: '/preview',
+        // previews: true,
         pages: [
           {
             type: 'Page',
@@ -54,8 +49,8 @@ module.exports = {
             path: '/',
             component: require.resolve('./src/templates/page.js'),
           },
-        ]
-      }
+        ],
+      },
     },
   ],
-}
+};

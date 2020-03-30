@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql, Link } from 'gatsby';
-import styled from 'styled-components';
+import styled from "@emotion/styled";
 
 const navigationQuery = graphql`
   {
@@ -90,7 +90,6 @@ const Layout = ({ children }) => {
       <Header>
         <StaticQuery
           query={`${navigationQuery}`}
-          // When it resolves this navigation query it's going to inject the result into this render function
           render={data => {
             return (
               <>
