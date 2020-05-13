@@ -1,4 +1,11 @@
 # Node.js with React
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure subscription 1 (c7fedeaa-c6ee-4e81-ad52-73a960cbe31f)'
+    appType: 'webApp'
+    WebAppName: 'simplekahildemo'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
 # Build a Node.js project that uses React.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
