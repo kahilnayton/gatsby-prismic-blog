@@ -18,10 +18,6 @@ steps:
   displayName: 'install gatsby'
 
 - script: |
-    yarn global add prismic-cli
-  displayName: 'install prismic'
-
-- script: |
     yarn
     yarn build
   displayName: 'gatsby build'
@@ -29,7 +25,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    sourceFolder: 'public'
+    sourceFolder: '/public'
     contents: '**' 
     targetFolder: $(Build.ArtifactStagingDirectory)
     cleanTargetFolder: true 
@@ -40,3 +36,4 @@ steps:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
     artifactName: 'drop' 
     publishLocation: 'Container' 
+
