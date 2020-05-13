@@ -23,17 +23,15 @@ steps:
   displayName: 'gatsby build'
  
 
-- task: CopyFiles@2
+- task: ArchiveFiles@2
   inputs:
-    sourceFolder: 'public'
-    contents: '**' 
-    targetFolder: $(Build.ArtifactStagingDirectory)
-    cleanTargetFolder: true 
-  displayName: 'copy built site'
-
-- task: PublishBuildArtifacts@1
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/public/'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/website-$(Build.BuildId).zip'
+  displayName: 'archive website'
+- task: PublishPipelineArtifact@1
   inputs:
-    PathtoPublish: $(Build.ArtifactStagingDirectory)
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-  displayName: 'publish artifacts'
+    targetPath: '$(Build.ArtifactStagingDirectory)/website-$(Build.BuildId).zip'
+    ArtifactName: 'website-drop-$(Build.BuildId)'
+  displayName: 'publish website artifact'
