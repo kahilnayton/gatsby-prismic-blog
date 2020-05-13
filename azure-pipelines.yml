@@ -1,4 +1,10 @@
-
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Azure subscription 1 (c7fedeaa-c6ee-4e81-ad52-73a960cbe31f)'
+    appType: 'webApp'
+    appName: 'simplekahildemo'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    deploymentMethod: 'auto'
 pool:
   vmImage: 'Ubuntu 16.04'
 
@@ -31,11 +37,6 @@ steps:
     cleanTargetFolder: true 
   displayName: 'copy built site'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-    artifactName: 'drop' 
-    publishLocation: 'Container' 
 
 - task: AzureRmWebAppDeployment@4
   inputs:
