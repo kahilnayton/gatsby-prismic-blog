@@ -1,33 +1,39 @@
-# Node.js
-# Build a general Node.js project with npm.
+# Node.js with React
+# Build a Node.js project that uses React.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
-trigger:
-- master
-
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'Ubuntu 16.04'
+
+trigger:
+  branches:
+    include:
+    - master
 
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '10.x'
+    versionSpec: '12.x'
   displayName: 'Install Node.js'
 
 - script: |
-    npm install -g gatsby-cli
+    yarn global add gatsby-cli
   displayName: 'install gatsby'
 
+- script: |
+    yarn global add prismic-cli
+  displayName: 'install prismic'
 
 - script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+    yarn
+    yarn build
+  displayName: 'gatsby build'
+ 
 
 - task: CopyFiles@2
   inputs:
-    sourceFolder: 'gatsby-site/public'
+    sourceFolder: 'public'
     contents: '**' 
     targetFolder: $(Build.ArtifactStagingDirectory)
     cleanTargetFolder: true 
@@ -37,4 +43,4 @@ steps:
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
     artifactName: 'drop' 
-    publishLocation: 'Container'
+    publishLocation: 'Container' 
