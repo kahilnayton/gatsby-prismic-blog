@@ -101,7 +101,7 @@ const ContactUs = props => {
           }
         />
         <Form
-          name="contact"
+          name="contact-us-one"
           method="Post"
           data-netlify="true"
           data-netlify-honeypot="bot-field"
@@ -137,12 +137,12 @@ const ContactUs = props => {
         </Form>
 
         <Form2
-          name="contactwo"
+          name="contact-us-two"
           method="post"
           data-netlify="true"
           data-netlify-honeypot="bot-field"
         >
-          <input type="hidden" name="form-name" value="contact-us" />
+          <input type="hidden" name="form-name" value="contact-us-two" />
           {props.data.prismic.allContact_pages.edges[0].node.form_fields.map(
             (field, i) => {
               if (field.field_type === 'textarea') {
