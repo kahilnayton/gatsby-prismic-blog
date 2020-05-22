@@ -1,40 +1,37 @@
-# Node.js
-# Build a general Node.js project with npm.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-
-trigger:
-- master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'Ubuntu 16.04'
+
+trigger:
+  branches:
+    include:
+    - master
 
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '10.x'
+    versionSpec: '12.x'
   displayName: 'Install Node.js'
 
 - script: |
-    npm install -g gatsby-cli
+    yarn global add gatsby-cli
   displayName: 'install gatsby'
 
-
 - script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+    yarn
+    yarn build
+  displayName: 'gatsby build'
+ 
 
-- task: CopyFiles@2
+- task: ArchiveFiles@2
   inputs:
-    sourceFolder: 'gatsby-site/public'
-    contents: '**' 
-    targetFolder: $(Build.ArtifactStagingDirectory)
-    cleanTargetFolder: true 
-  displayName: 'copy built site'
-
-- task: PublishBuildArtifacts@1
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/public/'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/website-$(Build.BuildId).zip'
+  displayName: 'archive website'
+- task: PublishPipelineArtifact@1
   inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-    artifactName: 'drop' 
-    publishLocation: 'Container'
+    targetPath: '$(Build.ArtifactStagingDirectory)/website-$(Build.BuildId).zip'
+    ArtifactName: 'website-drop-$(Build.BuildId)'
+  displayName: 'publish website artifact'
