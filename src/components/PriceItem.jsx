@@ -48,7 +48,7 @@ const PriceItem = ({ title, price, description, mostPopular }) => {
       }
       <RichText render={title} />
       <div className="price">
-        $ {price} <span className="duration">/ month</span>
+        $ {price} 
       </div>
       <div className='description'>
         <RichText render={description} />
