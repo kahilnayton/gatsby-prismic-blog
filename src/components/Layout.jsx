@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql, Link } from 'gatsby';
 import styled from 'styled-components';
+import Footer from '../components/Footer';
 
 const navigationQuery = graphql`
   {
@@ -118,6 +119,7 @@ const Layout = ({ children }) => {
         />
       </Header>
       <MainWrapper>{children}</MainWrapper>
+      <Footer/>
     </>
   );
 };

@@ -15,7 +15,7 @@ color: white;
 div{
   max-width: 800px;
   margin: 0 auto;
-  background: rgba(0,0,0, 0.5);
+  background: rgba(255,165,2, 0.5);
 
 }
 `;
